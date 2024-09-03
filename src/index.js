@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 3000
 const path = require('path')
 const hbs = require('hbs')
 const router = require('../routers/router')
+require('../db/connection')
 
 const staticPath = path.join(__dirname, '../public')
 const viewPath = path.join(__dirname, '../templates/views')
