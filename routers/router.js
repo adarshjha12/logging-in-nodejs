@@ -4,6 +4,9 @@ const indexPageController = require('../controllers/index')
 const registrationPageController = require('../controllers/registration')
 const loginPageController = require('../controllers/login')
 
+router.use(express.json())
+router.use(express.urlencoded({extended: true}))
+
 router.get( '/', indexPageController.getIndexpage)
 router.get( '/register', registrationPageController.getRegistrationPage)
 router.get( '/login', loginPageController.getLoginPage )
