@@ -5,6 +5,7 @@ const path = require('path')
 const hbs = require('hbs')
 const router = require('../routers/router')
 require('../db/connection')
+const AppUser = require('../userSchema/schema')
 
 const staticPath = path.join(__dirname, '../public')
 const viewPath = path.join(__dirname, '../templates/views')
