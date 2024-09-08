@@ -15,6 +15,8 @@ exports.postUserData = async function (req, res) {
         })
 
         postUser.save()
+
+        res.redirect('/')
     } catch (error) {
         console.log(error);
         res.send(401, 'server error')
