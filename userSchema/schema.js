@@ -33,17 +33,40 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    tokens: [{
+        token: {
+            type: String
+        }
+    }]
     
 })
 
-// userSchema.methods.generateToken = function (next) {
-//     try {
+userSchema.methods.accessToken = async function () {
+    try {
+        const token = jwt.sign({id: this._id}, process.env.PRIVATE_KEY1)
+        this.tokens = this.tokens.concat({token})
+
+        await this.save()
+        return token
+    } catch (error) {
+        console.log(error);
         
-//     } catch (error) {
+    }
+}
+
+userSchema.methods.refreshToken = async function () {
+    try {
+        const token = jwt.sign({id: this._id}, process.env.PRIVATE_KEY2)
+        this.tokens = this.tokens.concat({token})
+
+        await this.save()
+        return token
+    } catch (error) {
+        console.log(error);
         
-//     }
-// }
+    }
+}
 
 
 

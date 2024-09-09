@@ -14,7 +14,21 @@ exports.postUserData = async function (req, res) {
             password: req.body.password
         })
 
+    const accessToken = postUser.accessToken()
+    const refreshToken = postUser.refreshToken()
+
+    res.cookie('jwt', accessToken, {
+        maxAge: 15 * 60 * 1000, httpOnly: true ,
+        httpOnly: true
+    })
+
+    res.cookie('refreshToken', refreshToken, {
+         maxAge: 30 * 24 * 60 * 60 * 1000, 
+         httpOnly: true 
+    })
+        
         postUser.save()
+
         console.log('signup success');
         
         res.redirect('/')
