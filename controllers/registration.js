@@ -15,7 +15,8 @@ exports.postUserData = async function (req, res) {
         })
 
         postUser.save()
-
+        console.log('signup success');
+        
         res.redirect('/')
     } catch (error) {
         console.log(error);

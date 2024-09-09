@@ -1,10 +1,36 @@
+const { json } = require('express')
 const AppUser = require('../userSchema/schema')
+const bcrypt = require('bcryptjs')
 
 
 exports.getLoginPage = function (req, res) {
     res.render('login')
 }
 
-exports.postLoginData = function (req, res) {
-    
+exports.postLoginData = async function (req, res) {
+    const userEmail = req.body.email
+    const password = req.body.password
+
+    try {
+        const findUser = await AppUser.findOne({email: userEmail})
+
+        if (!findUser) {
+            res.send('cannot find you')
+        }
+
+        const matchPassword = await bcrypt.compare(password, findUser.password)
+        if (matchPassword === true) {
+            console.log('login success');
+            
+            res.redirect('/')
+        } else{
+            res.send('invalid details')
+        }
+        
+
+    } catch (error) {
+        console.log(error);
+        
+    }
 }
+
