@@ -20,7 +20,21 @@ exports.postLoginData = async function (req, res) {
         const matchPassword = await bcrypt.compare(password, findUser.password)
         if (matchPassword === true) {
             console.log('login success');
-            
+
+            //generating tokens
+            const accessToken = findUser.accessToken()
+            const refreshToken = findUser.refreshToken()
+
+            res.cookie('jwt', accessToken, {
+                maxAge: 15 * 60 * 1000, httpOnly: true ,
+                httpOnly: true
+            })
+
+            res.cookie('refreshToken', refreshToken, {
+                maxAge: 30 * 24 * 60 * 60 * 1000, 
+                httpOnly: true 
+            })
+
             res.redirect('/')
         } else{
             res.send('invalid details')

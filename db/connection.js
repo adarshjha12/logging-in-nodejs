@@ -3,7 +3,7 @@ const cloudUri = 'mongodb+srv://jhaa50872:adarshjha@cluster0.radur.mongodb.net/f
 
 const localUri = 'mongodb://localhost:27017/newtesting'
 
-mongoose.connect(cloudUri)
+mongoose.connect(localUri)
 .then( () => console.log('connection successfull to db')
 ).catch( (err) =>{
     console.log(err);

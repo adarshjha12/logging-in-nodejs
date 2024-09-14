@@ -44,10 +44,10 @@ const userSchema = new mongoose.Schema({
 
 userSchema.methods.accessToken = async function () {
     try {
-        const token = jwt.sign({id: this._id}, process.env.PRIVATE_KEY1)
+        const token = jwt.sign({id: this._id}, process.env.PRIVATE_KEY)
         this.tokens = this.tokens.concat({token})
 
-        await this.save()
+        // await this.save()
         return token
     } catch (error) {
         console.log(error);
@@ -57,10 +57,10 @@ userSchema.methods.accessToken = async function () {
 
 userSchema.methods.refreshToken = async function () {
     try {
-        const token = jwt.sign({id: this._id}, process.env.PRIVATE_KEY2)
+        const token = jwt.sign({id: this._id}, process.env.PRIVATE_KEY)
         this.tokens = this.tokens.concat({token})
 
-        await this.save()
+        // await this.save()
         return token
     } catch (error) {
         console.log(error);
