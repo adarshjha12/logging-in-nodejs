@@ -80,6 +80,16 @@
             margin-top: 16px;
         } 
 
+         #signup {
+            color: #ff4400;
+            text-decoration: none;
+            font-size: 22px;
+            display: block;
+            text-align: right;
+            margin-top: 16px;
+        } 
+
+
         .form-group a:hover {
             text-decoration: underline;
         }

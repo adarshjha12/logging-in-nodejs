@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema({
     
 })
 
-userSchema.methods.accessToken = async function () {
+userSchema.methods.generateToken = async function () {
     try {
         const token = jwt.sign({id: this._id}, process.env.PRIVATE_KEY)
         this.tokens = this.tokens.concat({token})
@@ -51,20 +51,6 @@ userSchema.methods.accessToken = async function () {
         return token
     } catch (error) {
         console.log(error);
-        
-    }
-}
-
-userSchema.methods.refreshToken = async function () {
-    try {
-        const token = jwt.sign({id: this._id}, process.env.PRIVATE_KEY)
-        this.tokens = this.tokens.concat({token})
-
-        // await this.save()
-        return token
-    } catch (error) {
-        console.log(error);
-        
     }
 }
 
@@ -82,8 +68,6 @@ userSchema.pre('save', async function(next) {
         return next()
     }
 } )
-
-
 
 const AppUser = mongoose.model('appuser', userSchema)
 

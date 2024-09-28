@@ -18,18 +18,13 @@ exports.postUserData = async function (req, res) {
 
         // generating tokens
 
-        const accessToken = await postUser.accessToken()
-        const refreshToken = await postUser.refreshToken()
+        const accessToken = await postUser.generateToken()
 
         res.cookie('jwt', accessToken, {
-            maxAge: 15 * 60 * 1000, httpOnly: true ,
-            httpOnly: true
+            maxAge: 150000, httpOnly: true 
         })
 
-        res.cookie('refreshToken', refreshToken, {
-            maxAge: 30 * 24 * 60 * 60 * 1000, 
-            httpOnly: true 
-        })
+        
         console.log('signup success');
         
         res.redirect('/')

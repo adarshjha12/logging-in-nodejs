@@ -22,24 +22,18 @@ exports.postLoginData = async function (req, res) {
             console.log('login success');
 
             //generating tokens
-            const accessToken = findUser.accessToken()
-            const refreshToken = findUser.refreshToken()
+            const accessToken = await findUser.generateToken()
 
             res.cookie('jwt', accessToken, {
-                maxAge: 15 * 60 * 1000, httpOnly: true ,
-                httpOnly: true
+                maxAge: 150000, httpOnly: true
             })
 
-            res.cookie('refreshToken', refreshToken, {
-                maxAge: 30 * 24 * 60 * 60 * 1000, 
-                httpOnly: true 
-            })
 
             res.redirect('/')
         } else{
             res.send('invalid details')
         }
-        
+
 
     } catch (error) {
         console.log(error);
