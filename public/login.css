@@ -17,6 +17,7 @@
             border-radius: 10px;
             box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.3);
             width: 300px;
+           
         }
 
         .login-container h1 {
@@ -65,6 +66,7 @@
             font-weight: bold;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            
         }
 
         .submit-btn:hover {
@@ -84,9 +86,7 @@
             color: #ff4400;
             text-decoration: none;
             font-size: 22px;
-            display: block;
-            text-align: right;
-            margin-top: 16px;
+            margin-left: 10px; 
         } 
 
 
@@ -94,3 +94,35 @@
             text-decoration: underline;
         }
    
+        #google-div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+        }
+        #google{
+            width: 70%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: .8rem;
+            color: white;
+            padding: .2rem 0;
+            border: 1px solid grey;
+            border-radius: 5px;
+            & img{
+                width: 30%;
+                height: auto;
+            }
+        }
+
+        #sign-up-para{
+            text-align: center;
+            font-size: .7rem;
+        }
+
+        #or{
+            text-align: center;
+        }
