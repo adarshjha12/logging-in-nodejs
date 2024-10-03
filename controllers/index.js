@@ -1,3 +1,7 @@
 exports.getIndexpage = function (req, res) {
-    res.render('index')
-}
+    if (req.isAuthenticated()) {
+        res.render('index')
+      } else {
+        res.redirect('/login');
+      } 
+    }
