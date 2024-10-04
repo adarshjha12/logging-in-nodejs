@@ -8,7 +8,7 @@ passport.use(new GoogleStrategy({
   clientSecret: process.env.CLIENT_SECRET,  // Get from .env file
   callbackURL: 'http://localhost:3000/auth/google/callback',
   passReqToCallback: true,
-  prompt: 'consent'
+  // prompt: 'consent'
 }, async function (req, accessToken, refreshToken, profile, done) {
   try {
     // Check if the user exists in the database
